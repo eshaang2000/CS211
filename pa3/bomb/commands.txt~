@@ -1,0 +1,8 @@
+break phase_4
+break explode_bomb
+break phase_5
+break explode_bomb
+break phase_6
+break explode_bomb
+layout asm
+layout reg

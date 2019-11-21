@@ -1,0 +1,8 @@
+rsp is the stack I am assuming
+rbx is pushed onto the stack
+The string length should be 6
+jumps to 112
+then jumps to 41
+rax=3
+rbx stores = the string you entered
+the next argument is stroed in ecx
