@@ -4,12 +4,12 @@
 
 typedef struct node
 {
-    char varName*;
+    char* varName;
     int value;
     struct node* next;
 } node;
 
-node* create(char varName*, int value,node* next)
+node* create(char *varName, int value,node* next)
 {
     node* new_node = (node*)malloc(sizeof(node));
     if(new_node == NULL)
