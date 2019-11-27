@@ -3,76 +3,11 @@
 #include <strings.h>
 #include <string.h>
 #include <math.h>
+#include "bit.h"
+// #include "struc.h"
 
 int counter=0;
-
-
-typedef struct IntArray
-{
-    size_t elements;
-    int *data;
-}IntArray;
-
-typedef struct String
-{
-    size_t length;
-    char *data;
-    IntArray *boo;
-}String;
-
-// String arr[100];
-
-typedef struct spec{
-  struct String name;
-  int n; //basically the value of 2^n to make the array
-  struct IntArray array;
-}spec;
-
-//going to have a array of structs to to for it.
-//Should I use this struct to
-int bitAND(int value1, int value2){
-  if(value1 == 1 && value2 == 1){
-    return 1;
-  }
-
-  return 0;
-}
-
-int bitOR(int value1, int value2){
-  if(value1 == 1 || value2 == 1){
-    return 1;
-  }
-  return 0;
-}
-
-int bitNOT(int value1){
-  if(value1 == 1){
-    return 0;
-  }
-  return 1;
-}
-
-int bitNAND(int value1, int value2){
-  int temp=bitAND(value1,value2);
-  int ans=bitNOT(temp);
-  return ans;
-}
-
-int bitNOR(int value1, int value2){
-  int temp=bitOR(value1,value2);
-  int ans=bitNOT(temp);
-  return ans;
-}
-
-int bitXOR(int value1, int value2){
-  int bnot=bitNOT(value2);
-  int anot=bitNOT(value1);
-  int temp1=bitAND(value1,bnot);
-  int temp2=bitAND(anot,value2);
-  int ans=bitOR(temp1,temp2);
-  return ans;
-}
-
+//--------------------------------------------This function gives you the 2^n of the argument----------------------------------------------------
 int fun(int a)
 {
   int r=1;
@@ -82,10 +17,12 @@ int fun(int a)
   }
   return r;
 }
-
-
-
+//--------------------------------------------------------------------------------------------------------------
+//main function begins
+//boo is the int array
 int main(int argc, char* argv[]){
+
+//Setup and file open-----------------------------------------------------------------------------
   int input=0;
   int output=0;
   String* arr[10000];
@@ -95,13 +32,16 @@ int main(int argc, char* argv[]){
     return 0;
   }
   int i=0;
+// ----------------------------------------------------------------------------------------------
 
-  for(int i=0;i<10000;i++){
+
+//Reads input and puts it in a struct with it's name
+  for(i=0;i<10000;i++){
     arr[i]=malloc(sizeof(String));
     arr[i]->data=malloc(100*sizeof(char));
     // IntArray* temp=malloc(sizeof(IntArray));
     arr[i]->boo=malloc(sizeof(IntArray));;
-    arr[i]->boo->data=malloc(100*sizeof(int));
+    arr[i]->boo->data=malloc(10000*sizeof(int));
   }
 
   fscanf(fp,"INPUTVAR %d",&input);
@@ -118,9 +58,17 @@ int main(int argc, char* argv[]){
 
   fscanf(fp,"OUTPUTVAR %d",&output);
   for(i=0;i<output;i++){
-    fscanf(fp," %s",arr[counter]->data);
-    counter++;
+    if(i==input-1){
+      fscanf(fp,"%s\n",arr[counter]->data);
+      counter++;
+    }
+    else{
+      fscanf(fp," %s",arr[counter]->data);
+      counter++;
+    }
   }
+//-----------------------------------------------------------------------------------
+
   //----------------------------------------Puts the gray code in a 2d array----------------------------------------
   int n=input;
   i=0;
@@ -138,8 +86,12 @@ int main(int argc, char* argv[]){
 
     }
   }
+
   int res[fun(n)][input+output];
-  c=0;
+
+  c=0;//counter of the 1d array cause I am a crap coder
+
+  //--------------------------Putting things into a 2d array
   for(i=0;i<fun(n);i++){
     for(j=0;j<n;j++){
       res[i][j]=a[c];
@@ -148,11 +100,16 @@ int main(int argc, char* argv[]){
     }
     // printf("\n");
   }
+
+  //-------------------------Making a big array and putting stuff into the output values
   for(i=0;i<fun(n);i++){
     for(j=input;j<input+output;j++){
       res[i][j]=0;
     }
   }
+
+
+  //--------------printing the array
     for(i=0;i<fun(n);i++){
       for(j=0;j<input+output;j++){
         // res[i][j]=a[c];
@@ -165,6 +122,15 @@ int main(int argc, char* argv[]){
   //res is my answer array. Just have to print this out. Basically
 
   //----------------------------------------2d array done-------------------------------------
+
+//printing the name array
+  for(i=0;i<input+output;i++){
+    printf("%s\n",arr[i]->data);
+  }
+//------------------------]
+
+
+  //puts column wrt to name------------------------------------------------------------------
   for(i=0;i<10000;i++){
     if(i<counter){
       for(j=0;j<fun(n);j++){
@@ -176,16 +142,24 @@ int main(int argc, char* argv[]){
       break;
     }
   }
+  // ---------------------Putting columns done--------------------
 
+  //----------------------------------This is to test that putting in columns work
+  int s=fun(n);
+  IntArray *ans=malloc(sizeof(IntArray));
+  ans->data=malloc(10000*sizeof(int));
+  ans=nor(arr[0]->boo,arr[1]->boo,s);
+  for(i=0;i<fun(n);i++){
+    printf("%d\n",(ans->data[i]) );
+  }
 
-
-
+  free(ans);
 
   for(i=0;i<10000;i++){
     if(i<counter){
-      printf("%s\n",arr[i]->data);
+      // printf("%s\n",arr[i]->data);
       for(j=0;j<fun(n);j++){
-        printf("%d\n",arr[i]->boo->data[j]);
+        // printf("%d\n",arr[i]->boo->data[j]);
       }
     }
     free(arr[i]->boo->data);

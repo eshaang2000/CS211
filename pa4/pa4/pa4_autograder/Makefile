@@ -1,5 +1,5 @@
 OUTPUT=first
-CFLAGS=-Wall -g -fsanitize=address -std=c99
+CFLAGS=-Wall -g -std=c99
 LFLAGS=-lm
 
 %: %.c %.h

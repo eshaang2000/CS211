@@ -1,0 +1,74 @@
+// typedef struct node
+// {
+//   char* varName;
+//   int value;
+//   struct node* next;
+// } node;
+//
+// node* create(char *varName, int value,node* next)
+// {
+//   node* new_node = (node*)malloc(sizeof(node));
+//   if(new_node == NULL)
+//   {
+//     exit(0);
+//   }
+//   new_node->varName = varName;
+//   new_node->value = value;
+//   new_node->next = next;
+//
+//   return new_node;
+// }
+//
+// void append(struct Node** head_ref, int new_data)
+// {
+//   /* 1. allocate node */
+//   struct Node* new_node = (struct Node*) malloc(sizeof(struct Node));
+//
+//   struct Node *last = *head_ref;  /* used in step 5*/
+//
+//   /* 2. put in the data  */
+//   new_node->data  = new_data;
+//
+//   /* 3. This new node is going to be the last node, so make next
+//   of it as NULL*/
+//   new_node->next = NULL;
+//
+//   /* 4. If the Linked List is empty, then make the new node as head */
+//   if (*head_ref == NULL)
+//   {
+//     *head_ref = new_node;
+//     return;
+//   }
+//
+//   /* 5. Else traverse till the last node */
+//   while (last->next != NULL)
+//   last = last->next;
+//
+//   /* 6. Change the next of last node */
+//   last->next = new_node;
+//   return;
+// }
+//
+// node* makeLinkedList(char *varName, int n){ //make a linked list with n nodes and returns the head node which has a name of what it takes
+//
+//   node *head=create(varName,0,NULL);
+//   for(int i=0;i<n-1;i++){
+//     append(&head,0);
+//   }
+//   return head;
+// }
+//
+// void print(Node* head){
+//   Node* printer = head;
+//   printf("%d\n", totalNums);
+//   removeDuplicates(head);
+//   //Node* prev=NULL;
+//   while(printer != NULL){
+//     printf("%d\t", printer->data);
+//     //prev=printer;
+//     //free(prev);
+//     printer = (printer->next);
+//   }
+//
+//   return;
+// }
