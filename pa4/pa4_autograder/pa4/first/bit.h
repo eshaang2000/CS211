@@ -96,7 +96,7 @@ IntArray *xor(IntArray *a,IntArray *b,int n){
   IntArray* ans=malloc(sizeof(IntArray));
   ans->data=malloc(10000*sizeof(int));
   for(int i=0;i<n;i++){
-    ans->data[i]=bitXOR(a->data[i],b->data[i]);
+    ans->data[i]=a->data[i]^b->data[i];
   }
   return ans;
 }

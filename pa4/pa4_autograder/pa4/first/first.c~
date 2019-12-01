@@ -6,6 +6,7 @@
 #include "bit.h"
 // #include "struc.h"
 
+
 int counter=0;
 //--------------------------------------------This function gives you the 2^n of the argument----------------------------------------------------
 int fun(int a)
