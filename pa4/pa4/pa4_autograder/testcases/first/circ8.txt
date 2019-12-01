@@ -1,6 +1,0 @@
-INPUTVAR 3 A B C
-OUTPUTVAR 1 X
-NAND A B a
-XOR a C b
-AND C b c
-XOR A c X
