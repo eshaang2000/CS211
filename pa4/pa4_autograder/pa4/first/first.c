@@ -3,11 +3,8 @@
 #include <strings.h>
 #include <string.h>
 #include <math.h>
-#include "bit.h"
-// #include "struc.h"
-
+#include "first.h"
 int counter=0;
-
 //--------------------------------------------This function gives you the 2^n of the argument----------------------------------------------------
 int fun(int a)
 {
@@ -109,26 +106,9 @@ int main(int argc, char* argv[]){
     }
   }
 
-
-  //--------------printing the array
-    for(i=0;i<fun(n);i++){
-      for(j=0;j<input+output;j++){
-        // res[i][j]=a[c];
-        // printf("%d\t", res[i][j]);
-        // c++;
-      }
-      // printf("\n");
-    }
-
-  //res is my answer array. Just have to print this out. Basically
+//  is my answer array. Just have to print this out. Basically
 
   //----------------------------------------2d array done-------------------------------------
-
-//printing the name array
-  for(i=0;i<input+output;i++){
-    // printf("%s\n",arr[i]->data);
-  }
-//------------------------]
 
 
   //puts column wrt to name------------------------------------------------------------------
@@ -164,10 +144,7 @@ else{
 
   // printf("%s\n",instruction );
   fscanf(fp,"%s %s %s",arg1,arg2,target);
-  // if(feof(fp)){
-  //   break;
-  // }
-  // printf("%s %s %s \n",instruction, arg1, arg2 );
+  
 }
 //---------------------------
     // free(arr[i]->boo->data);
@@ -225,19 +202,18 @@ else{
       }
       // printf("%d\n",flag );
       if(flag==0){
-        // printf("%s\n","Target not found making new target");
-        arr[counter]=malloc(sizeof(String));
-        arr[counter]->data=malloc(100*sizeof(char));
-        // IntArray* temp=malloc(sizeof(IntArray));
-        arr[counter]->boo=malloc(sizeof(IntArray));;
-        arr[counter]->boo->data=malloc(10000*sizeof(int));
+        // arr[counter]=malloc(sizeof(String));
+        // arr[counter]->data=malloc(100*sizeof(char));
+        // arr[counter]->boo=malloc(sizeof(IntArray));;
+        // arr[counter]->boo->data=malloc(10000*sizeof(int));
         arr[counter]->data=strcpy(arr[counter]->data,target);
         itarget=i;
         counter++;
         // printf("%d\n",counter );
       }
 
-
+      free(arr[itarget]->boo->data);
+      free(arr[itarget]->boo);
       // printf("%d %d %d\n%s\n",iargs1, iargs2, itarget,target);
       if(strcmp(instruction,"AND")==0){
         arr[itarget]->boo=and(arr[iargs1]->boo,arr[iargs2]->boo,fun(n));
@@ -265,19 +241,8 @@ else{
   // printf("%s %s %s %s\n",instruction,arg1,arg2,target);
 }while(!feof(fp));//while closed
 
-
-
-
-
-
   //----------------------------------This is to test that putting in columns work
-  int s=fun(n);
-  IntArray *ans=malloc(sizeof(IntArray));
-  ans->data=malloc(10000*sizeof(int));
-  ans=nor(arr[0]->boo,arr[1]->boo,s);
-  for(i=0;i<fun(n);i++){
-    // printf("%d\n",(ans->data[i]) );
-  }
+  
 
 
   // for(i=0;i<fun(n);i++){
@@ -288,11 +253,7 @@ else{
   //   }
   //   printf("\n");
   // }
-  for(int i=0;i<10000;i++){
-    if(i<input+output){
-      // printf("%s ",arr[i]->data);
-    }
-  }
+  
   // printf("\n");
 
   for(i=0;i<fun(n);i++){
@@ -301,31 +262,23 @@ else{
     }
     printf("\n");
   }
-
-  free(ans);
-
-
-
-
-
-
-
-//---------------------------To print the name and all the data
-  // printf("\n\n\n\n\n\n\n\n\n\n");
   for(i=0;i<10000;i++){
-    if(i<counter){
-      // printf("%s\n",arr[i]->data);
-      for(j=0;j<fun(n);j++){
-        // printf("%d\n",arr[i]->boo->data[j]);
-      }
-    }
-
-//---------------------------
-    // free(arr[i]->boo->data);
-    // free(arr[i]->boo);
-    // free(arr[i]->data);
-    // free(arr[i]);
+    free(arr[i]->boo->data);
+    free(arr[i]->boo);
+    free(arr[i]->data);
+    free(arr[i]);
   }
+
+  // free(ans);
+
+
+
+
+
+
+
+  
+  fclose(fp);
   return 0;
 
 }
